@@ -1,0 +1,184 @@
+// vim: set syntax=asciidoc:
+[[yaml_basic_workshop]]
+= YAML Basics
+:data-uri:
+:icons:
+:toc:
+:toclevels 4:
+:numbered:
+:Author: Lalatendu Mohanty
+:Email:  lmohanty@redhat.com
+:revealjs_theme: beige
+:revealjs_slideNumber: true
+:revealjs_previewLinks: false
+:revealjs_transition: linear
+:revealjs_transitionSpeed: slow
+
+== Introduction
+* YAML is a human-readable text-based format for specifying configuration-type information
+* In other words it is a human friendly data serialization standard for all programming languages
+
+== Kubernetes Configuration
+
+* Configuration files should be stored in version control before being pushed to the cluster
+** This allows you to quickly roll back a configuration change if necessary
+** It also aids cluster re-creation and restoration
+* Kubernetes accepts either YAML or JSON as configuration files
+* YAML is a superset of JSON, which means that any valid JSON file is also a valid YAML file
+
+== Advantage of JSON
+* It is better as a serialization format and more suitable for data interchange between your apis
+* Ships with a far simpler spec than YAML
+* You can learn JSON a lot faster than you can learn YAML, because it is not nearly as robust in its feature set.
+
+== Advantage Of YAML
+
+* it is designed to be readable and editable by humans
+* It supports comments. This is very useful especially when you use it for configuration
+* Some of the big advantages of YAML over JSON are the ability to self reference, support for complex datatypes, embedded block literals, comments etc
+
+== Structure Of A YAML File
+
+* There are only two types of structures you need to know about in YAML
+** Arrays/Lists
+** Dictionary/Maps
+*  Complex structures are created using these basic structures e.g. maps of lists and lists of maps, and so on
+
+== YAML Maps
+
+* Maps let you associate key-value pairs
+* which of course is convenient when you’re trying to set up configuration information
+* For example, you might have a config file that starts like this
+
+[source, yaml]
+-----------------
+apiVersion: v1
+kind: Pod
+-----------------
+
+The first line is a separator, and is optional unless you’re trying to define multiple structures in a single file. From there, as you can see, we have two values, v1 and Pod, mapped to two keys, apiVersion and kind.
+
+TIP: Check the JSON equivalent of the YAML
+
+== More Maps
+
+* Lets create a more complicated structure by creating a key that maps to another map, rather than a string
+
+[source, yaml]
+-----------------
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rss-site
+  labels:
+    app: web
+-----------------
+
+* In this case, we have a key, metadata, that has as its value a map with 2 more keys, name and labels
+** The labels key itself has a map as its value
+** You can nest these as far as you want to
+
+TIP: Check the JSON equivalent of the YAML
+
+== YAML Lists
+
+* YAML lists are literally a sequence of objects
+* List can have any number of items that start with a dash (-) indented from the parent
+
+[source, yaml]
+-----------------
+args:
+  - sleep
+  - "1000"
+  - message
+  - "Bring back Firefly!"
+-----------------
+
+* JSON equivalent
+
+[source, json]
+------------------
+{
+   "args": ["sleep", "1000", "message", "Bring back Firefly!"]
+}
+------------------
+
+== List, Map Together
+
+[source, yaml]
+------------------
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rss-site
+  labels:
+    app: web
+spec:
+  containers:
+    - name: front-end
+      image: nginx
+      ports:
+        - containerPort: 80
+    - name: rss-reader
+      image: nickchase/rss-php-nginx:v1
+      ports:
+        - containerPort: 88
+------------------
+
+* JSON equivalent:
+
+[source, json]
+------------------
+{
+   "apiVersion": "v1",
+   "kind": "Pod",
+   "metadata": {
+                 "name": "rss-site",
+                 "labels": {
+                             "app": "web"
+                           }
+               },
+    "spec": {
+       "containers": [{
+                       "name": "front-end",
+                       "image": "nginx",
+                       "ports": [{
+                                  "containerPort": "80"
+                                 }]
+                      }, 
+                      {
+                       "name": "rss-reader",
+                       "image": "nickchase/rss-php-nginx:v1",
+                       "ports": [{
+                                  "containerPort": "88"
+                                 }]
+                      }]
+            }
+}
+------------------
+
+
+== Basic Rules
+
+* YAML is case sensitive
+* The files should have .yaml as the extension
+* YAML does not allow the use of tabs while creating YAML files; spaces are allowed instead
+
+== YAML Examples
+
+* https://github.com/kubernetes/examples
+
+== Online YAML Parser
+
+* https://yaml-online-parser.appspot.com/
+* https://codebeautify.org/yaml-to-json-xml-csv
+* https://kubeyaml.com/
+
+== Reference
+
+* https://www.tutorialspoint.com/yaml/yaml_basics.htm
+* https://www.mirantis.com/blog/introduction-to-yaml-creating-a-kubernetes-deployment/
+* https://developer.ibm.com/tutorials/yaml-basics-and-usage-in-kubernetes/
+* https://www.json2yaml.com/yaml-vs-json
