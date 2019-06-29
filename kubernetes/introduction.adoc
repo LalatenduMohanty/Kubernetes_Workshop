@@ -1,0 +1,32 @@
+[[kubernetes_basics]]
+= Kubernetes Basics
+:data-uri:
+:icons:
+:toc:
+:toclevels 4:
+:numbered:
+:Author: Lalatendu Mohanty
+:Email:  lmohanty@redhat.com
+:revealjs_theme: beige
+:revealjs_slideNumber: true
+:revealjs_previewLinks: false
+:revealjs_transition: linear
+:revealjs_transitionSpeed: slow
+
+== What Is Cloud Native Application?
+
+* It is an approach to building and running applications that exploits the advantages of the cloud computing delivery model
+* May it lies in the answer to the question:
+** How to write applications which can run in public, private, or hybrid cloud and take advantage of the platforms?
+
+
+== Why Kubernetes?
+
+* Platform to run cloud native applictaion
+* Deploy and update software at scale
+** Microservices, Continuous delivery, Web scale
+* Managing containerized workloads and services
+* Facilitates declarative configuration and automation
+* Builds upon a decade and a half of experience that Google has with running production workloads at scale
+
+== Concepts
