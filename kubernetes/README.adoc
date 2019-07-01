@@ -1,0 +1,26 @@
+:data-uri:
+:icons:
+:toc:
+:toclevels 4:
+:numbered:
+:Author: Lalatendu Mohanty
+:Email:  lalatendum@acm.org
+
+= Collection of blogs, talks
+
+== Introduction
+
+
+* https://www.youtube.com/watch?v=pozC9rBvAIs["Managing Containers at Scale with CoreOS and Kubernetes" by Kelsey Hightower]
+* https://jvns.ca/blog/2017/06/04/learning-about-kubernetes/
+
+== Architecture
+* https://github.com/shubheksha/kubernetes-internals
+
+== Operators
+
+ * TBD
+
+== CKA 
+
+* https://github.com/stretchcloud/cka-lab-practice
